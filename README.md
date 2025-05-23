@@ -1,76 +1,122 @@
-# 📝 Quill Auto Answer Script (Bookmarklet + Tampermonkey)
+# 📝 Quill Auto Answer (v1.1)
 
-> 📌 A powerful userscript & bookmarklet tool that automatically fills in answers on [Quill.org](https://www.quill.org/) based on backend response data.
+**Automatically fill in answers on [Quill.org](https://www.quill.org/) using real-time response interception.**  
+Supports sentence-based and blank-fill questions with high reliability.
 
-> 📌 一个强大的浏览器脚本/书签工具，能根据后台返回的数据自动填写 [Quill.org](https://www.quill.org/) 上的练习答案。
+📁 Files included:
+- `Quill Auto Answer-1.1.bookmark.js` – One-line **bookmarklet** version (for casual use)
+- `Quill Auto Answer-1.1.user.js` – Full **Tampermonkey script** (recommended)
 
----
-
-## ✅ Features | 功能亮点
-
-- ✏️ Supports full-sentence questions (textarea based)
-- 🧩 Supports fill-in-the-blank questions (single and multi-blank)
-- ⚙️ Injects answers by parsing `/responses` network calls
-- 🔄 Compatible with React/Vue bound inputs via native DOM events
-
-- ✅ 支持整句题型（如主谓一致、句子改写）
-- ✅ 支持多空填空题（多个空白自动填入）
-- ✅ 通过监听 `/responses` 网络包提取正确答案
-- ✅ 使用原生 DOM 接口触发事件，兼容各种前端框架
+👉 [Jump to 中文版说明 ⬇](#中文版说明)
 
 ---
 
-## 🔧 How to Use | 使用方法
+## ✨ Features
 
-### Method 1: Bookmarklet | 方法一：浏览器书签（轻量使用）
-
-1. Create a bookmark in your browser.
-2. Paste the bookmarklet code (from `bookmarklet.txt` or this repo) as the URL.
-3. Go to https://www.quill.org/, click the bookmark **before** starting any exercise.
-
-1. 创建一个浏览器书签
-2. 将 `bookmarklet.txt` 中的代码粘贴进 URL 栏
-3. 进入 Quill.org 并点击书签，再开始答题
-
-> ⚠️ Must click the bookmarklet **before** the answers are loaded.
-> ⚠️ 需要在题目加载前点击书签才能生效！
+- ✅ Works with both sentence and fill-in-the-blank questions
+- 🧠 Detects answers from network response data
+- 🚀 No API key, injection, or hacking – just smart automation
+- ⚙️ Supports multiple blanks, re-uses, and edge cases
+- 💻 Designed for both Bookmarklet and Tampermonkey use
 
 ---
 
-### Method 2: Tampermonkey Script | 方法二：浏览器脚本插件（推荐）
+## 🔧 Option 1: Bookmarklet (drag-and-drop style)
 
-1. Install [Tampermonkey](https://www.tampermonkey.net/)
-2. Create a new userscript
-3. Paste in the code from `quill-auto.user.js` (in this repo)
-4. Done! It auto-runs on any Quill.org page
+1. Open the file `Quill Auto Answer-1.1.bookmark.js`
+2. Copy the one-liner code inside
+3. Create a new bookmark in your browser and paste the code as the URL
+4. Go to https://www.quill.org/, then click the bookmark **before** starting an exercise
 
-1. 安装浏览器插件 [Tampermonkey](https://www.tampermonkey.net/)
-2. 创建新脚本，粘贴 `quill-auto.user.js` 代码
-3. 自动运行，无需手动点击
-4. 稳定性高，适合长期使用
+⚠️ You must click the bookmark **before** the question loads. For better reliability, use Tampermonkey.
 
 ---
 
-## 📷 Example | 示例截图
+## 🧩 Option 2: Tampermonkey Script (recommended)
 
-| Type 类型 | 自动填写效果 |
-|-----------|--------------|
-| Full sentence | ✅ 自动填写整句 |
-| Fill-in-the-blanks | ✅ 自动识别每个空并填入 |
+1. Install [Tampermonkey](https://tampermonkey.net) extension
+2. Open the file `Quill Auto Answer-1.1.user.js`
+3. Paste the code into a new userscript in Tampermonkey
+4. It will auto-run on every Quill.org exercise page
 
----
-
-## ⚠️ Notes | 注意事项
-
-- This tool is **for educational/personal use only**.
-- Please do **not use to violate academic honesty policies**.
-- Bookmarklet may not work if clicked too late. Use Tampermonkey for best results.
-
-- 本脚本仅供个人学习使用，请勿用于违反学校纪律的用途。
-- Bookmarklet 必须提前点击，推荐使用 Tampermonkey 插件以获得最稳定体验。
+✅ Best for permanent use – works even if you refresh or open new tabs.
 
 ---
 
-## 📄 License
+## 📸 Preview
 
-MIT License. Feel free to fork, modify, or share with classmates!
+| Type               | Screenshot                        |
+|--------------------|-----------------------------------|
+| Sentence Completion | ✅ Auto-filled from network packet |
+| Fill-in-the-blank   | ✅ Correct word filled per blank   |
+
+---
+
+## ⚠️ Disclaimer
+
+This tool is for educational and demo purposes only.  
+Do not use in ways that violate your school’s or teacher’s rules.
+
+---
+
+## 📜 License
+
+MIT License. Contributions welcome.
+
+---
+
+# 🇨🇳 中文版说明
+
+**Quill 自动答题工具 v1.1**
+
+自动识别 Quill.org 网站练习题答案，并填入输入框。支持整句题和多空题。
+
+📁 文件说明：
+- `Quill Auto Answer-1.1.bookmark.js`：书签版（适合临时使用）
+- `Quill Auto Answer-1.1.user.js`：Tampermonkey 插件脚本（推荐使用）
+
+---
+
+## ✨ 功能亮点
+
+- ✅ 支持整句题、多个空填空题
+- 🔍 从网络请求中提取真实答案
+- ⚙️ 自动模拟真实输入，无需额外 API
+- 🔁 支持多个空、重复单词
+
+---
+
+## 🔧 用法一：书签 Bookmarklet
+
+1. 打开 `Quill Auto Answer-1.1.bookmark.js`
+2. 将其中一行代码复制粘贴到新书签的 URL
+3. 进入 quill.org，**在题目加载前点击书签**
+
+⚠️ 若点击太晚将无法获取答案，推荐使用 Tampermonkey。
+
+---
+
+## 🧩 用法二：Tampermonkey 插件脚本（推荐）
+
+1. 安装浏览器插件 [Tampermonkey](https://tampermonkey.net)
+2. 打开 `Quill Auto Answer-1.1.user.js` 文件
+3. 粘贴代码并保存，进入 quill.org 自动运行，无需手动点击
+
+---
+
+## 🖼️ 示例截图
+
+- 整句题 ✅ 自动填入完整答案
+- 多空题 ✅ 精准拆词填入每个空
+
+---
+
+## ⚠️ 注意事项
+
+本脚本仅供学习使用。请勿违反课堂纪律或学术诚信。
+
+---
+
+## 📜 开源协议
+
+MIT License，自由修改使用。
