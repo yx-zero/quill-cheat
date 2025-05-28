@@ -65,9 +65,18 @@
   }
 
   function forceSetInputValue(input, value) {
-    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+  if (input instanceof HTMLInputElement) {
+    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
     nativeInputValueSetter.call(input, value);
-    input.dispatchEvent(new Event('input', { bubbles: true }));
-    input.dispatchEvent(new Event('change', { bubbles: true }));
+  } else if (input instanceof HTMLTextAreaElement) {
+    const nativeTextAreaValueSetter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
+    nativeTextAreaValueSetter.call(input, value);
+  } else {
+    console.warn('[Quill Auto] Unsupported input type:', input);
+    return;
   }
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+
 })();
