@@ -22,7 +22,7 @@ Supports sentence-based and fill-in-the-blank questions with high reliability.
 
 ## 🔧 Option 1: Bookmarklet
 
-1. Open `Quill Auto Answer-1.1.bookmark.js`
+1. Open `Quill Auto Answer-1.7.bookmark.js`
 2. Copy the one-liner code inside
 3. Create a new browser bookmark and paste it into the URL field
 4. Go to https://www.quill.org/ and click the bookmark **before** starting the question
@@ -34,7 +34,7 @@ Supports sentence-based and fill-in-the-blank questions with high reliability.
 ## 🧩 Option 2: Tampermonkey Script (Recommended)
 
 1. Install [Tampermonkey](https://tampermonkey.net)
-2. Open `Quill Auto Answer-1.1.user.js`
+2. Open `Quill Auto Answer-1.7.user.js`
 3. Paste into a new Tampermonkey script
 4. Automatically runs when visiting Quill.org exercises
 
