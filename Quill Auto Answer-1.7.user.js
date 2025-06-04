@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Quill Auto Answer (Strict Decoded Match)
+// @name         Quill Auto Answer (Strict Match + Well Done)
 // @namespace    http://tampermonkey.net/
-// @version      1.7
-// @description  Autofill Quill answers only if feedback strictly matches "That's a strong sentence!"
+// @version      1.9
+// @description  Autofill Quill answers if feedback matches known good responses
 // @match        https://www.quill.org/*
 // @grant        none
 // ==/UserScript==
@@ -22,22 +22,27 @@
 
         if (!Array.isArray(json)) return response;
 
-        const isStrongFeedback = (raw) => decodeHtml(raw).trim() === "That's a strong sentence!";
+        const isStrongFeedback = (raw) => {
+          const decoded = decodeHtml(raw).trim();
+          return decoded === "That's a strong sentence!" ||
+                 decoded === "Well done! That's the correct answer.";
+        };
 
         const matchItem = json.find(item =>
           item?.feedback && item?.text && isStrongFeedback(item.feedback)
         );
 
         if (!matchItem) {
-          console.warn('[Quill Auto] No exact strong feedback found. Skipping autofill.');
+          console.warn('[Quill Auto] No valid feedback match found. Skipping autofill.');
           return response;
         }
 
         const fullAnswer = matchItem.text;
         console.log('[Quill Auto] Matched answer text:', fullAnswer);
 
-        // contenteditable div
-        const contentDiv = document.querySelector('.connect-text-area[contenteditable="true"]');
+        // Support both types of contenteditable input areas
+        const contentDiv = document.querySelector('[contenteditable="true"].input-field') ||
+                           document.querySelector('[contenteditable="true"].connect-text-area');
         if (contentDiv) {
           forceSetInputValue(contentDiv, fullAnswer);
           console.log('[Quill Auto] Filled contenteditable input.');
@@ -84,7 +89,7 @@
 
   function forceSetInputValue(input, value) {
     if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
-      const setter = Object.getOwnPropertyDescriptor(input.__proto__, 'value').set;
+      const setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(input), 'value').set;
       setter.call(input, value);
       input.dispatchEvent(new Event('input', { bubbles: true }));
       input.dispatchEvent(new Event('change', { bubbles: true }));
