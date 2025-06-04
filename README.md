@@ -1,4 +1,4 @@
-# 📝 Quill Auto Answer (v1.1)
+# 📝 Quill Auto Answer (v1.7)
 
 **Automatically fill in answers on [Quill.org](https://www.quill.org/) using real-time response interception.**  
 Supports sentence-based and fill-in-the-blank questions with high reliability.
