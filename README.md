@@ -4,8 +4,8 @@
 Supports sentence-based and fill-in-the-blank questions with high reliability.
 
 📁 Files included:
-- `Quill Auto Answer-1.1.bookmark.js` – One-line **bookmarklet** version (for casual use)
-- `Quill Auto Answer-1.1.user.js` – Full **Tampermonkey script** (recommended)
+- `Quill Auto Answer-1.7.bookmark.js` – One-line **bookmarklet** version (for casual use)
+- `Quill Auto Answer-1.7.user.js` – Full **Tampermonkey script** (recommended)
 
 > 📘 [View in 中文 / 中文版说明 →](./README.zh.md)
 
