@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Quill Auto Answer (Flexible Feedback Match)
+// @name         Quill Auto Answer (Strict Decoded Match)
 // @namespace    http://tampermonkey.net/
-// @version      1.5
-// @description  Autofill Quill answers if any item has "That's a strong sentence!" feedback (supports HTML or plain)
+// @version      1.7
+// @description  Autofill Quill answers only if feedback strictly matches "That's a strong sentence!"
 // @match        https://www.quill.org/*
 // @grant        none
 // ==/UserScript==
@@ -22,14 +22,14 @@
 
         if (!Array.isArray(json)) return response;
 
-        const keyword = "That's a strong sentence!";
+        const isStrongFeedback = (raw) => decodeHtml(raw).trim() === "That's a strong sentence!";
 
         const matchItem = json.find(item =>
-          item?.feedback?.includes(keyword) && item?.text
+          item?.feedback && item?.text && isStrongFeedback(item.feedback)
         );
 
         if (!matchItem) {
-          console.warn('[Quill Auto] No matching strong feedback found. Skipping autofill.');
+          console.warn('[Quill Auto] No exact strong feedback found. Skipping autofill.');
           return response;
         }
 
@@ -71,6 +71,12 @@
 
     return response;
   };
+
+  function decodeHtml(html) {
+    const el = document.createElement('div');
+    el.innerHTML = html;
+    return el.textContent || el.innerText || '';
+  }
 
   function escapeReg(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
