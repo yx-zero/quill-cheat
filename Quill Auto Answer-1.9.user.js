@@ -25,7 +25,8 @@
         const isStrongFeedback = (raw) => {
           const decoded = decodeHtml(raw).trim();
           return decoded === "That's a strong sentence!" ||
-                 decoded === "Well done! That's the correct answer.";
+                 decoded === "Well done! That's the correct answer." ||
+                 decoded === "That's a strong answer!";
         };
 
         const matchItem = json.find(item =>
