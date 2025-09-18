@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Quill Auto Answer (Strict Match + Well Done)
+// @name         Quill Auto Answer (Strict Match + Well Done) - Fixed for Textarea
 // @namespace    http://tampermonkey.net/
-// @version      1.9
-// @description  Autofill Quill answers if feedback matches known good responses
+// @version      2.0
+// @description  Autofill Quill answers if feedback matches known good responses (works with textarea)
 // @match        https://www.quill.org/*
 // @grant        none
 // ==/UserScript==
@@ -41,12 +41,15 @@
         const fullAnswer = matchItem.text;
         console.log('[Quill Auto] Matched answer text:', fullAnswer);
 
-        // Support both types of contenteditable input areas
-        const contentDiv = document.querySelector('[contenteditable="true"].input-field') ||
-                           document.querySelector('[contenteditable="true"].connect-text-area');
-        if (contentDiv) {
-          forceSetInputValue(contentDiv, fullAnswer);
-          console.log('[Quill Auto] Filled contenteditable input.');
+        // ✅ support for textarea.connect-text-area
+        const contentInput =
+          document.querySelector('textarea.connect-text-area') ||
+          document.querySelector('[contenteditable="true"].input-field') ||
+          document.querySelector('[contenteditable="true"].connect-text-area');
+
+        if (contentInput) {
+          forceSetInputValue(contentInput, fullAnswer);
+          console.log('[Quill Auto] Filled input/textarea.');
         }
 
         // fill-in-the-blank inputs
